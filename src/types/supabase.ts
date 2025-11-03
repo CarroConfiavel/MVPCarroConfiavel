@@ -14,6 +14,56 @@ export type Database = {
   }
   public: {
     Tables: {
+      anuncio_denuncias: {
+        Row: {
+          anuncio_id: string
+          created_at: string
+          denunciante_id: string | null
+          descricao: string
+          id: string
+          motivo: Database["public"]["Enums"]["denuncia_motivo_enum"]
+          respondido_em: string | null
+          respondido_por: string | null
+          resposta: string | null
+          status: Database["public"]["Enums"]["denuncia_status_enum"]
+          updated_at: string | null
+        }
+        Insert: {
+          anuncio_id: string
+          created_at?: string
+          denunciante_id?: string | null
+          descricao: string
+          id?: string
+          motivo: Database["public"]["Enums"]["denuncia_motivo_enum"]
+          respondido_em?: string | null
+          respondido_por?: string | null
+          resposta?: string | null
+          status?: Database["public"]["Enums"]["denuncia_status_enum"]
+          updated_at?: string | null
+        }
+        Update: {
+          anuncio_id?: string
+          created_at?: string
+          denunciante_id?: string | null
+          descricao?: string
+          id?: string
+          motivo?: Database["public"]["Enums"]["denuncia_motivo_enum"]
+          respondido_em?: string | null
+          respondido_por?: string | null
+          resposta?: string | null
+          status?: Database["public"]["Enums"]["denuncia_status_enum"]
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "denuncias_anuncio_id_fkey"
+            columns: ["anuncio_id"]
+            isOneToOne: false
+            referencedRelation: "anuncios"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       anuncios: {
         Row: {
           aceita_troca: boolean | null
@@ -222,56 +272,6 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "boost_historico_anuncio_id_fkey"
-            columns: ["anuncio_id"]
-            isOneToOne: false
-            referencedRelation: "anuncios"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      denuncias: {
-        Row: {
-          anuncio_id: string
-          created_at: string
-          denunciante_id: string | null
-          descricao: string
-          id: string
-          motivo: Database["public"]["Enums"]["denuncia_motivo_enum"]
-          respondido_em: string | null
-          respondido_por: string | null
-          resposta: string | null
-          status: Database["public"]["Enums"]["denuncia_status_enum"]
-          updated_at: string | null
-        }
-        Insert: {
-          anuncio_id: string
-          created_at?: string
-          denunciante_id?: string | null
-          descricao: string
-          id?: string
-          motivo: Database["public"]["Enums"]["denuncia_motivo_enum"]
-          respondido_em?: string | null
-          respondido_por?: string | null
-          resposta?: string | null
-          status?: Database["public"]["Enums"]["denuncia_status_enum"]
-          updated_at?: string | null
-        }
-        Update: {
-          anuncio_id?: string
-          created_at?: string
-          denunciante_id?: string | null
-          descricao?: string
-          id?: string
-          motivo?: Database["public"]["Enums"]["denuncia_motivo_enum"]
-          respondido_em?: string | null
-          respondido_por?: string | null
-          resposta?: string | null
-          status?: Database["public"]["Enums"]["denuncia_status_enum"]
-          updated_at?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "denuncias_anuncio_id_fkey"
             columns: ["anuncio_id"]
             isOneToOne: false
             referencedRelation: "anuncios"
@@ -710,12 +710,12 @@ export type Database = {
             foreignKeyName: "subscriptions_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
-            referencedRelation: "users"
+            referencedRelation: "usuarios"
             referencedColumns: ["user_id"]
           },
         ]
       }
-      users: {
+      usuarios: {
         Row: {
           avatar_url: string | null
           cep: string | null
