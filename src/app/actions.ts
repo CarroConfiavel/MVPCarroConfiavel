@@ -8,6 +8,7 @@ export const signUpAction = async (formData: FormData) => {
   const email = formData.get("email")?.toString();
   const password = formData.get("password")?.toString();
   const fullName = formData.get("full_name")?.toString() || '';
+  const phone = formData.get("phone")?.toString() || '';
   const supabase = await createClient();
 
   if (!email || !password) {
@@ -18,6 +19,14 @@ export const signUpAction = async (formData: FormData) => {
     );
   }
 
+  if (!phone) {
+    return encodedRedirect(
+      "error",
+      "/sign-up",
+      "Telefone é obrigatório",
+    );
+  }
+
   const { data: { user }, error } = await supabase.auth.signUp({
     email,
     password,
@@ -25,6 +34,7 @@ export const signUpAction = async (formData: FormData) => {
       data: {
         full_name: fullName,
         email: email,
+        phone: phone,
       }
     },
   });
@@ -43,6 +53,7 @@ export const signUpAction = async (formData: FormData) => {
           user_id: user.id,
           name: fullName,
           email: email,
+          phone: phone,
           token_identifier: user.id,
           created_at: new Date().toISOString()
         });
