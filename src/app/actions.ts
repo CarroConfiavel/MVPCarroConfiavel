@@ -19,6 +19,14 @@ export const signUpAction = async (formData: FormData) => {
     );
   }
 
+  if (!telefone) {
+    return encodedRedirect(
+      "error",
+      "/sign-up",
+      "Telefone é obrigatório",
+    );
+  }
+
   const { data: { user }, error } = await supabase.auth.signUp({
     email,
     password,

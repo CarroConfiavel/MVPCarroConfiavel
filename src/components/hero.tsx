@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { ArrowUpRight, Check } from 'lucide-react';
+import { Search } from 'lucide-react';
 
 export default function Hero() {
   return (
@@ -11,47 +10,23 @@ export default function Hero() {
         <div className="container mx-auto px-4">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl sm:text-6xl font-bold text-gray-900 mb-8 tracking-tight">
-              Build{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                Faster
-              </span>
-              {" "}with Our Next-Gen Platform
+              CarroConfiável: O seu próximo carro com laudo e transparência.
             </h1>
             
             <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
-              Empower your team with our cutting-edge solution. Join industry leaders who've already transformed their workflow.
+              Conectamos você a lojistas verificados e veículos com laudo cautelar aprovado.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link
-                href="/dashboard"
-                className="inline-flex items-center px-8 py-4 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors text-lg font-medium"
-              >
-                Get Started Free
-                <ArrowUpRight className="ml-2 w-5 h-5" />
-              </Link>
-              
-              <Link
-                href="#pricing"
-                className="inline-flex items-center px-8 py-4 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors text-lg font-medium"
-              >
-                View Pricing
-              </Link>
-            </div>
-
-            <div className="mt-16 flex flex-col sm:flex-row items-center justify-center gap-8 text-sm text-gray-600">
-              <div className="flex items-center gap-2">
-                <Check className="w-5 h-5 text-green-500" />
-                <span>No credit card required</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Check className="w-5 h-5 text-green-500" />
-                <span>14-day free trial</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Check className="w-5 h-5 text-green-500" />
-                <span>Cancel anytime</span>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-2 justify-center items-center max-w-2xl mx-auto">
+              <input
+                type="text"
+                placeholder="Buscar veículos..."
+                className="flex-1 w-full px-6 py-4 text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+              />
+              <button className="inline-flex items-center px-8 py-4 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors text-lg font-medium whitespace-nowrap">
+                <Search className="mr-2 w-5 h-5" />
+                Buscar
+              </button>
             </div>
           </div>
         </div>
