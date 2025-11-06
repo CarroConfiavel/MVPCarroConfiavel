@@ -9,7 +9,18 @@ export default async function Home() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  const { data: plans, error } = await supabase.functions.invoke('supabase-functions-get-plans');
+  // Add error handling and fallback for plans
+  let plans = [];
+  try {
+    const { data, error } = await supabase.functions.invoke('supabase-functions-get-plans');
+    if (!error && data) {
+      plans = data;
+    }
+  } catch (error) {
+    console.error('Error fetching plans:', error);
+    // Use fallback plans if edge function fails
+    plans = [];
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
