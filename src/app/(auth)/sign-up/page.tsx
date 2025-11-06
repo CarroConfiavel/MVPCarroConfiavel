@@ -3,7 +3,6 @@ import { SubmitButton } from "@/components/submit-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import { SmtpMessage } from "../smtp-message";
 import { signUpAction } from "@/app/actions";
 import Navbar from "@/components/navbar";
 
@@ -68,6 +67,20 @@ export default async function Signup(props: {
               </div>
 
               <div className="space-y-2">
+                <Label htmlFor="telefone" className="text-sm font-medium">
+                  Telefone (com WhatsApp)
+                </Label>
+                <Input
+                  id="telefone"
+                  name="telefone"
+                  type="tel"
+                  placeholder="(11) 99999-9999"
+                  required
+                  className="w-full"
+                />
+              </div>
+
+              <div className="space-y-2">
                 <Label htmlFor="password" className="text-sm font-medium">
                   Password
                 </Label>
@@ -94,7 +107,6 @@ export default async function Signup(props: {
             <FormMessage message={searchParams} />
           </form>
         </div>
-        <SmtpMessage />
       </div>
     </>
   );

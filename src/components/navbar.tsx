@@ -1,14 +1,23 @@
-import Link from 'next/link'
-import { createClient } from '../../supabase/server'
-import { Button } from './ui/button'
-import { User, UserCircle } from 'lucide-react'
-import UserProfile from './user-profile'
+"use client";
 
-export default async function Navbar() {
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { createClient } from "../../supabase/client"
+import UserProfile from "@/components/user-profile"
+import { useEffect, useState } from "react"
+import { User } from "@supabase/supabase-js"
+
+export default function Navbar() {
+  const [user, setUser] = useState<User | null>(null)
   const supabase = createClient()
 
-  const { data: { user } } = await (await supabase).auth.getUser()
-
+  useEffect(() => {
+    const getUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser()
+      setUser(user)
+    }
+    getUser()
+  }, [])
 
   return (
     <nav className="w-full border-b border-gray-200 bg-white py-2">
@@ -38,10 +47,10 @@ export default async function Navbar() {
                 Sign In
               </Link>
               <Link
-                href="/sign-up"
+                href="/cadastro-loja"
                 className="px-4 py-2 text-sm font-medium text-white bg-black rounded-md hover:bg-gray-800"
               >
-                Sign Up
+                Cadastrar
               </Link>
             </>
           )}
